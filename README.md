@@ -21,13 +21,20 @@ Fully working web funnel for an **AI Digital Twin** experience:
 npm install
 ```
 
-### Database (SQLite)
+### Database (PostgreSQL)
 
-This project uses **Prisma + SQLite** locally.
+This project uses **Prisma + PostgreSQL**. For local dev and production, use a hosted DB (e.g. [Neon](https://neon.tech) – free tier).
 
-```bash
-npx prisma migrate dev
-```
+1. Create a free account at [neon.tech](https://neon.tech)
+2. Create a new project → copy the connection string
+3. Add to `.env`:
+   ```
+   DATABASE_URL="postgresql://user:pass@host/dbname?sslmode=require"
+   ```
+4. Run migrations:
+   ```bash
+   npx prisma migrate dev
+   ```
 
 ### Run dev server
 
@@ -41,7 +48,7 @@ Open `http://localhost:3000` (it redirects to `/quiz`).
 
 Create `.env` (already present for local dev) with:
 
-- `DATABASE_URL="file:./dev.db"`
+- `DATABASE_URL` – PostgreSQL connection string (e.g. from [Neon](https://neon.tech))
 - `OPENAI_API_KEY` (optional) – enables LLM-generated structured analysis
 - `OPENAI_MODEL` (optional) – defaults to `gpt-4o-mini`
 - `DEBUG_EVENTS` (optional) – set to `1` to enable `/debug/events` in production deployments
@@ -67,9 +74,12 @@ The analysis popup is **structured** and validated:
 - **Preferred**: LLM call when `OPENAI_API_KEY` is set
 - **Fallback**: deterministic rules that return the same JSON structure
 
-## Deploy (optional)
+## Deploy (Vercel)
 
-Deploy to Vercel (optional). If deploying, set env vars in Vercel project settings.
+1. Create a free PostgreSQL database at [neon.tech](https://neon.tech)
+2. In Vercel project settings → Environment Variables, add:
+   - `DATABASE_URL` = your Neon connection string
+3. Deploy. The `vercel-build` script runs `prisma migrate deploy` before build.
 
 ## Notes
 
