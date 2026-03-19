@@ -1,8 +1,22 @@
 import { NextResponse } from "next/server";
-import { Prisma } from ".prisma/client";
 import { ZodError } from "zod";
 
-function getPrismaUserMessage(e: Prisma.PrismaClientKnownRequestError): string {
+function isPrismaKnownError(
+  e: unknown
+): e is { code: string; meta?: { target?: unknown } } {
+  return (
+    typeof e === "object" &&
+    e !== null &&
+    "code" in e &&
+    typeof (e as { code: unknown }).code === "string" &&
+    (e as { code: string }).code.startsWith("P")
+  );
+}
+
+function getPrismaUserMessage(e: {
+  code: string;
+  meta?: { target?: unknown };
+}): string {
   switch (e.code) {
     case "P2002": {
       const target = e.meta?.target;
@@ -24,7 +38,7 @@ export function handleApiError(e: unknown): NextResponse {
     const msg = e.issues.map((x) => x.message).join("; ") || "Invalid input";
     return NextResponse.json({ ok: false, error: msg }, { status: 400 });
   }
-  if (e instanceof Prisma.PrismaClientKnownRequestError) {
+  if (isPrismaKnownError(e)) {
     const message = getPrismaUserMessage(e);
     return NextResponse.json({ ok: false, error: message }, { status: 400 });
   }

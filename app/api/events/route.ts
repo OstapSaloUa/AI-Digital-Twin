@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { Prisma } from ".prisma/client";
 import { prisma } from "../../lib/prisma";
 import { getOrCreateSessionId } from "../../lib/session";
 
@@ -37,9 +36,7 @@ export async function POST(req: Request) {
         userId: body.userId ?? null,
         type,
         metadata:
-          body.metadata === undefined
-            ? Prisma.JsonNull
-            : (body.metadata as Prisma.InputJsonValue),
+          body.metadata === undefined ? undefined : (body.metadata as object),
       },
     });
 
