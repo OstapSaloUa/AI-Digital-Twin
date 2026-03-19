@@ -7,12 +7,7 @@ type ChatInputProps = {
   onSend: () => void;
 };
 
-export function ChatInput({
-  input,
-  setInput,
-  sending,
-  onSend,
-}: ChatInputProps) {
+export function ChatInput({ input, setInput, sending, onSend }: ChatInputProps) {
   return (
     <div className="border-t border-[var(--border-default)] p-3 sm:p-4">
       <div className="flex gap-2">
@@ -39,11 +34,7 @@ export function ChatInput({
               : "bg-[var(--bg-subtle)] text-[var(--text-disabled)] border border-[var(--border-default)]",
           ].join(" ")}
         >
-          {sending ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Send className="h-4 w-4" />
-          )}
+          {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
           <span className="hidden sm:inline">Send</span>
         </button>
       </div>

@@ -11,9 +11,7 @@ function getPreferredTheme(): Theme {
   if (typeof window === "undefined") return "dark";
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia?.("(prefers-color-scheme: light)")?.matches
-    ? "light"
-    : "dark";
+  return window.matchMedia?.("(prefers-color-scheme: light)")?.matches ? "light" : "dark";
 }
 
 function applyTheme(theme: Theme) {
@@ -37,10 +35,7 @@ export function ThemeToggle() {
     applyFavicon(theme);
   }, [theme]);
 
-  const nextTheme = useMemo<Theme>(
-    () => (theme === "dark" ? "light" : "dark"),
-    [theme],
-  );
+  const nextTheme = useMemo<Theme>(() => (theme === "dark" ? "light" : "dark"), [theme]);
 
   return (
     <button
@@ -55,13 +50,8 @@ export function ThemeToggle() {
       aria-label={`Switch to ${nextTheme} theme`}
       title={`Switch to ${nextTheme} theme`}
     >
-      {theme === "dark" ? (
-        <Moon className="h-4 w-4" />
-      ) : (
-        <Sun className="h-4 w-4" />
-      )}
+      {theme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
       <span className="hidden sm:inline">{theme === "dark" ? "Dark" : "Light"}</span>
     </button>
   );
 }
-

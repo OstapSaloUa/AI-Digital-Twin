@@ -19,8 +19,7 @@ export function QuizActions({
   onBack,
   onNext,
 }: QuizActionsProps) {
-  const disabled =
-    submitting || (!canAdvance && !(isLastStep && canSubmit));
+  const disabled = submitting || (!canAdvance && !(isLastStep && canSubmit));
   const canProceed = (canAdvance || (isLastStep && canSubmit)) && !submitting;
 
   return (
@@ -44,7 +43,9 @@ export function QuizActions({
           canProceed
             ? "bg-[var(--violet)] text-white hover:bg-[var(--violet-hover)]"
             : "bg-[var(--bg-subtle)] text-[var(--text-disabled)] border border-[var(--border-default)]",
-        ].filter(Boolean).join(" ")}
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         {submitting ? (
           <span className="inline-flex items-center gap-2">

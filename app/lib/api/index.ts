@@ -11,8 +11,7 @@ export const postQuiz = (state: {
   stressFrequency: string;
 }) => api.post("/api/quiz", state);
 
-export const postChatMessage = (content: string) =>
-  api.post("/api/chat/message", { content });
+export const postChatMessage = (content: string) => api.post("/api/chat/message", { content });
 
 export const postAnalysis = (messages: string[]) =>
   api.post<{ analysis: unknown }>("/api/analysis", { messages });
@@ -21,11 +20,13 @@ export const postEvent = (type: string, metadata?: unknown) =>
   api.post("/api/events", { type, metadata });
 
 export const getEvents = () =>
-  api.get<{ events: Array<{
-    id: string;
-    sessionId: string;
-    userId: string | null;
-    type: string;
-    metadata: unknown;
-    createdAt: string;
-  }> }>("/api/events");
+  api.get<{
+    events: Array<{
+      id: string;
+      sessionId: string;
+      userId: string | null;
+      type: string;
+      metadata: unknown;
+      createdAt: string;
+    }>;
+  }>("/api/events");

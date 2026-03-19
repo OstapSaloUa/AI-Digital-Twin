@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "../../lib/prisma";
-import { getOrCreateSessionId } from "../../lib/session";
+import { getOrCreateSessionId, getUserIdFromCookie } from "../../lib/session";
 
-const DEBUG_ALLOWED =
-  process.env.DEBUG_EVENTS === "1" || process.env.NODE_ENV !== "production";
+const DEBUG_ALLOWED = process.env.DEBUG_EVENTS === "1" || process.env.NODE_ENV !== "production";
 
 export async function GET() {
   if (!DEBUG_ALLOWED) {
@@ -30,13 +29,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing type" }, { status: 400 });
     }
 
+    const userId = body.userId ?? (await getUserIdFromCookie());
+
     const event = await prisma.event.create({
       data: {
         sessionId,
-        userId: body.userId ?? null,
+        userId,
         type,
-        metadata:
-          body.metadata === undefined ? undefined : (body.metadata as object),
+        metadata: body.metadata === undefined ? undefined : (body.metadata as object),
       },
     });
 
@@ -48,4 +48,3 @@ export async function POST(req: Request) {
     });
   }
 }
-

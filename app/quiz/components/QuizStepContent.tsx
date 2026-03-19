@@ -1,11 +1,5 @@
 import { User } from "lucide-react";
-import {
-  STEPS,
-  personalities,
-  therapyStyles,
-  primaryGoals,
-  stressFrequencies,
-} from "../utils";
+import { STEPS, personalities, therapyStyles, primaryGoals, stressFrequencies } from "../utils";
 import type { QuizState } from "../utils";
 import { QuizOptionCard } from "./QuizOptionCard";
 
@@ -46,9 +40,7 @@ export function QuizStepContent({
   if (currentStepId === "personality") {
     return (
       <div key="personality" className={stepClass(direction)}>
-        <div className="text-sm font-medium text-[var(--text-primary)]">
-          AI twin personality
-        </div>
+        <div className="text-sm font-medium text-[var(--text-primary)]">AI twin personality</div>
         <div className="mt-3 grid gap-2 sm:gap-3 sm:grid-cols-3">
           {personalities.map((p) => (
             <QuizOptionCard
@@ -69,9 +61,7 @@ export function QuizStepContent({
   if (currentStepId === "therapyStyle") {
     return (
       <div key="therapyStyle" className={stepClass(direction)}>
-        <div className="text-sm font-medium text-[var(--text-primary)]">
-          Therapy style
-        </div>
+        <div className="text-sm font-medium text-[var(--text-primary)]">Therapy style</div>
         <div className="mt-3 grid gap-2 sm:gap-3 sm:grid-cols-3">
           {therapyStyles.map((t) => (
             <QuizOptionCard
@@ -92,9 +82,7 @@ export function QuizStepContent({
   if (currentStepId === "primaryGoal") {
     return (
       <div key="primaryGoal" className={stepClass(direction)}>
-        <div className="text-sm font-medium text-[var(--text-primary)]">
-          Primary goal
-        </div>
+        <div className="text-sm font-medium text-[var(--text-primary)]">Primary goal</div>
         <div className="mt-3 grid gap-2 sm:gap-3 sm:grid-cols-3">
           {primaryGoals.map((g) => (
             <QuizOptionCard
@@ -127,9 +115,7 @@ export function QuizStepContent({
               desc={f.desc}
               Icon={f.Icon}
               selected={state.stressFrequency === f.value}
-              onSelect={() =>
-                setState((s) => ({ ...s, stressFrequency: f.value }))
-              }
+              onSelect={() => setState((s) => ({ ...s, stressFrequency: f.value }))}
             />
           ))}
         </div>

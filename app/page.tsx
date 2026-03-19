@@ -8,15 +8,32 @@ export default function HomePage() {
 
   return (
     <div className="relative flex flex-1 flex-col items-center justify-center overflow-hidden bg-[var(--bg-base)] px-4 py-10 sm:px-6 sm:py-16">
-      {/* Floating decorative shapes */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-      >
-        <div className="absolute left-[15%] top-[20%] h-32 w-32 rounded-full bg-[var(--violet)]/20 blur-3xl animate-float" />
-        <div className="absolute right-[20%] top-[30%] h-40 w-40 rounded-full bg-[var(--cyan)]/15 blur-3xl animate-float-slow" style={{ animationDelay: "-2s" }} />
-        <div className="absolute bottom-[25%] left-[25%] h-24 w-24 rounded-full bg-[var(--violet)]/10 blur-2xl animate-float" style={{ animationDelay: "-4s" }} />
-        <div className="absolute bottom-[30%] right-[15%] h-36 w-36 rounded-full bg-[var(--cyan)]/20 blur-3xl animate-float-slow" style={{ animationDelay: "-6s" }} />
+      {/* Floating decorative shapes with position animations */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div
+          className="absolute left-[15%] top-[20%] h-32 w-32 rounded-full bg-[var(--violet)]/20 blur-3xl animate-drift-orbital"
+          style={{ animationDelay: "0s" }}
+        />
+        <div
+          className="absolute right-[20%] top-[30%] h-40 w-40 rounded-full bg-[var(--cyan)]/15 blur-3xl animate-drift-orbital-reverse"
+          style={{ animationDelay: "-3s" }}
+        />
+        <div
+          className="absolute bottom-[25%] left-[25%] h-24 w-24 rounded-full bg-[var(--violet)]/10 blur-2xl animate-drift-orbital"
+          style={{ animationDelay: "-6s" }}
+        />
+        <div
+          className="absolute bottom-[30%] right-[15%] h-36 w-36 rounded-full bg-[var(--cyan)]/20 blur-3xl animate-drift-orbital-reverse"
+          style={{ animationDelay: "-9s" }}
+        />
+        <div
+          className="absolute left-[10%] top-[40%] h-28 w-28 rounded-full bg-[var(--violet)]/15 blur-2xl animate-float"
+          style={{ animationDelay: "-2s" }}
+        />
+        <div
+          className="absolute right-[10%] bottom-[40%] h-32 w-32 rounded-full bg-[var(--cyan)]/12 blur-3xl animate-float-slow"
+          style={{ animationDelay: "-5s" }}
+        />
         <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--violet)]/10 blur-[80px] animate-pulse-glow" />
       </div>
 
@@ -37,8 +54,8 @@ export default function HomePage() {
           className="mt-4 sm:mt-6 text-sm sm:text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg animate-fade-in-up"
           style={{ animationDelay: "0.35s" }}
         >
-          Experience 24/7 support and guidance with a personal AI model, always
-          at hand to help you navigate life&apos;s challenges.
+          Experience 24/7 support and guidance with a personal AI model, always at hand to help you
+          navigate life&apos;s challenges.
         </p>
         <button
           type="button"

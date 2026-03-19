@@ -13,6 +13,10 @@ export type DebugEvent = {
   createdAt: string;
 };
 
+/**
+ * Fetches and manages debug events from the API.
+ * @returns Events list, loading state, error state, forbidden state, and refetch function
+ */
 export function useDebugEvents() {
   const query = useQuery({
     queryKey: ["debug-events"],
@@ -28,8 +32,7 @@ export function useDebugEvents() {
     },
   });
 
-  const isForbidden =
-    axios.isAxiosError(query.error) && query.error.response?.status === 403;
+  const isForbidden = axios.isAxiosError(query.error) && query.error.response?.status === 403;
 
   return {
     events: query.data ?? [],

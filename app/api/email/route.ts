@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
-import { getOrCreateSessionId } from "../../lib/session";
+import { getOrCreateSessionId, USER_ID_COOKIE, USER_ID_COOKIE_OPTIONS } from "../../lib/session";
 import { handleApiError } from "../../lib/api-errors";
 
 const EmailSchema = z.object({
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     if (!userId) {
       return NextResponse.json(
         { ok: false, error: "No user found for this session" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -42,9 +42,10 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, userId });
+    const res = NextResponse.json({ ok: true, userId });
+    res.cookies.set(USER_ID_COOKIE, userId, USER_ID_COOKIE_OPTIONS);
+    return res;
   } catch (e) {
     return handleApiError(e);
   }
 }
-

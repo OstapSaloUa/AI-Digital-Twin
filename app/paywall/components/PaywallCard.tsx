@@ -17,8 +17,8 @@ export function PaywallCard({ plans }: PaywallCardProps) {
             Unlock your AI Digital Twin
           </h1>
           <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
-            Payments are out of scope for this task. This screen represents
-            where billing would happen after the analysis.
+            Payments are out of scope for this task. This screen represents where billing would
+            happen after the analysis.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-full bg-[var(--bg-subtle)] px-3 py-1 text-xs font-medium text-[var(--text-secondary)] border border-[var(--border-default)]">

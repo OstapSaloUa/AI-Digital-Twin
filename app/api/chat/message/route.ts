@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     if (!userId) {
       return NextResponse.json(
         { ok: false, error: "No user found for this session" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         sessionId,
         userId,
         type: "message_sent",
-        metadata: { length: input.content.length },
+        metadata: { length: input.content.length, content: input.content },
       },
     });
 
@@ -49,4 +49,3 @@ export async function POST(req: Request) {
     return handleApiError(e);
   }
 }
-

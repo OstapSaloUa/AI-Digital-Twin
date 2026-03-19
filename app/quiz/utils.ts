@@ -61,7 +61,12 @@ export const primaryGoals: Array<{
   desc: string;
   Icon: LucideIcon;
 }> = [
-  { value: "stress", label: "Reduce stress", desc: "Feel calmer and more in control.", Icon: Heart },
+  {
+    value: "stress",
+    label: "Reduce stress",
+    desc: "Feel calmer and more in control.",
+    Icon: Heart,
+  },
   { value: "confidence", label: "Build confidence", desc: "Trust yourself more.", Icon: Trophy },
   { value: "focus", label: "Improve focus", desc: "Stay present and productive.", Icon: Crosshair },
 ];

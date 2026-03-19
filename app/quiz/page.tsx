@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { Suspense, useRef, useEffect, useState } from "react";
 import { ClipboardList } from "lucide-react";
 import { STEPS } from "./utils";
 import { useQuiz } from "./useQuiz";
@@ -8,7 +8,7 @@ import { QuizStepper } from "./components/QuizStepper";
 import { QuizStepContent } from "./components/QuizStepContent";
 import { QuizActions } from "./components/QuizActions";
 
-export default function QuizPage() {
+function QuizContent() {
   const prevStepRef = useRef(0);
   const [prevStep, setPrevStep] = useState(0);
   const {
@@ -83,5 +83,28 @@ export default function QuizPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+function QuizFallback() {
+  return (
+    <div className="flex-1 bg-[var(--bg-base)]">
+      <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
+        <div className="rounded-xl sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] p-4 sm:p-8 shadow-sm animate-pulse">
+          <div className="h-8 w-48 bg-[var(--bg-subtle)] rounded" />
+          <div className="mt-4 h-4 w-full bg-[var(--bg-subtle)] rounded" />
+          <div className="mt-8 h-2 w-full bg-[var(--bg-subtle)] rounded" />
+          <div className="mt-12 h-12 w-32 bg-[var(--bg-subtle)] rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={<QuizFallback />}>
+      <QuizContent />
+    </Suspense>
   );
 }

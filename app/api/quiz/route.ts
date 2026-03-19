@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma";
-import { getOrCreateSessionId } from "../../lib/session";
+import { getOrCreateSessionId, USER_ID_COOKIE, USER_ID_COOKIE_OPTIONS } from "../../lib/session";
 import { handleApiError } from "../../lib/api-errors";
 
 const QuizSchema = z.object({
@@ -46,9 +46,10 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ ok: true, userId: user.id });
+    const res = NextResponse.json({ ok: true, userId: user.id });
+    res.cookies.set(USER_ID_COOKIE, user.id, USER_ID_COOKIE_OPTIONS);
+    return res;
   } catch (e) {
     return handleApiError(e);
   }
 }
-

@@ -5,10 +5,7 @@ type CustomizingCardProps = {
   overallProgress: number;
 };
 
-export function CustomizingCard({
-  progress,
-  overallProgress,
-}: CustomizingCardProps) {
+export function CustomizingCard({ progress, overallProgress }: CustomizingCardProps) {
   return (
     <div className="mx-auto w-full max-w-lg rounded-xl sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)]/90 p-4 sm:p-8 shadow-2xl backdrop-blur-xl">
       <div className="mb-4 sm:mb-6">
@@ -24,8 +21,7 @@ export function CustomizingCard({
         Customizing Your Algorithm
       </h1>
       <p className="mt-2 text-sm text-[var(--text-secondary)]">
-        We&apos;re tailoring your AI mind twin to match your preferences and
-        needs.
+        We&apos;re tailoring your AI mind twin to match your preferences and needs.
       </p>
 
       <div className="my-6 sm:my-8 flex justify-center">

@@ -9,13 +9,7 @@ type QuizOptionCardProps = {
   onSelect: () => void;
 };
 
-export function QuizOptionCard({
-  label,
-  desc,
-  Icon,
-  selected,
-  onSelect,
-}: QuizOptionCardProps) {
+export function QuizOptionCard({ label, desc, Icon, selected, onSelect }: QuizOptionCardProps) {
   return (
     <button
       type="button"
@@ -28,10 +22,7 @@ export function QuizOptionCard({
       ].join(" ")}
     >
       <Icon
-        className={[
-          "h-6 w-6",
-          selected ? "text-white/90" : "text-[var(--violet)]",
-        ].join(" ")}
+        className={["h-6 w-6", selected ? "text-white/90" : "text-[var(--violet)]"].join(" ")}
       />
       <div className="mt-2 text-sm font-semibold">{label}</div>
       <div

@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CUSTOMIZING_STEPS } from "./utils";
 
+/**
+ * Runs the customizing animation (progress bars) and redirects to /chat when done.
+ * @returns progress - per-step progress [0-100], overallProgress - average 0-100
+ */
 export function useCustomizing() {
   const router = useRouter();
   const [progress, setProgress] = useState([0, 0, 0]);

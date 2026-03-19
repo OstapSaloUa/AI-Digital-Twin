@@ -30,6 +30,11 @@ const FALLBACK_ANALYSIS: Analysis = {
   ],
 };
 
+/**
+ * Manages chat state: messages, input, sending, analysis modal.
+ * Tracks chat_opened, triggers analysis after 5 user messages, tracks analysis_shown.
+ * @returns messages, input, setInput, sending, analysis, analysisOpen, userMessageCount, listRef, send, goToPaywall, closeAnalysis
+ */
 export function useChat() {
   const router = useRouter();
   const { showError } = useToast();
@@ -42,7 +47,7 @@ export function useChat() {
 
   const userMessageCount = useMemo(
     () => messages.filter((m) => m.role === "user").length,
-    [messages],
+    [messages]
   );
 
   const { mutateAsync: sendMessage, isPending: sending } = useMutation({
@@ -54,8 +59,7 @@ export function useChat() {
         {
           id: uid(),
           role: "assistant",
-          content:
-            "I couldn't save that message, but you can keep going for the demo.",
+          content: "I couldn't save that message, but you can keep going for the demo.",
         },
       ]);
     },
@@ -94,7 +98,7 @@ export function useChat() {
   const generateAnalysis = useCallback(async (): Promise<Analysis> => {
     try {
       const res = await fetchAnalysis(
-        messages.filter((m) => m.role === "user").map((m) => m.content),
+        messages.filter((m) => m.role === "user").map((m) => m.content)
       );
       const data = res.data;
       if (data?.analysis && typeof data.analysis === "object") {

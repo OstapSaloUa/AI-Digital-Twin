@@ -47,21 +47,12 @@ export default function ChatPage() {
 
         <div className="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] shadow-sm overflow-hidden">
           <MessageList messages={messages} listRef={listRef} />
-          <ChatInput
-            input={input}
-            setInput={setInput}
-            sending={sending}
-            onSend={send}
-          />
+          <ChatInput input={input} setInput={setInput} sending={sending} onSend={send} />
         </div>
       </div>
 
       {analysisOpen && analysis ? (
-        <AnalysisModal
-          analysis={analysis}
-          onContinue={goToPaywall}
-          onClose={closeAnalysis}
-        />
+        <AnalysisModal analysis={analysis} onContinue={goToPaywall} onClose={closeAnalysis} />
       ) : null}
     </div>
   );

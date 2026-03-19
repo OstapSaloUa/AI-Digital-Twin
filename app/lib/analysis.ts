@@ -35,15 +35,17 @@ const stressorKeywords: Array<[string, string]> = [
   ["uncertain", "uncertainty"],
 ];
 
+/**
+ * Generates a structured Analysis from user messages using keyword matching.
+ * Fallback when OPENAI_API_KEY is not set or LLM fails.
+ * @param userMessages - Array of user chat messages
+ * @returns Parsed Analysis object (summary, themes, stressors, emotions, copingStrategies, suggestedNextSteps)
+ */
 export function deterministicAnalysis(userMessages: string[]): Analysis {
   const text = userMessages.join("\n").toLowerCase();
 
-  const emotions = emotionKeywords
-    .filter(([k]) => text.includes(k))
-    .map(([, v]) => v);
-  const stressors = stressorKeywords
-    .filter(([k]) => text.includes(k))
-    .map(([, v]) => v);
+  const emotions = emotionKeywords.filter(([k]) => text.includes(k)).map(([, v]) => v);
+  const stressors = stressorKeywords.filter(([k]) => text.includes(k)).map(([, v]) => v);
 
   const themes = Array.from(
     new Set([
@@ -52,11 +54,10 @@ export function deterministicAnalysis(userMessages: string[]): Analysis {
       ...(text.includes("should") ? ["self-judgment"] : []),
       ...(text.includes("can't") ? ["stuckness"] : []),
       ...(text.includes("worry") ? ["anticipatory worry"] : []),
-    ]),
+    ])
   ).slice(0, 4);
 
-  const summarySeed =
-    userMessages[userMessages.length - 1]?.slice(0, 220) ?? "";
+  const summarySeed = userMessages[userMessages.length - 1]?.slice(0, 220) ?? "";
 
   return AnalysisSchema.parse({
     summary:
@@ -78,4 +79,3 @@ export function deterministicAnalysis(userMessages: string[]): Analysis {
     ].slice(0, 3),
   });
 }
-

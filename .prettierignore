@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+build
+generated
+*.min.js
+package-lock.json

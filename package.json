@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "postinstall": "prisma generate",
+    "prepare": "husky",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "dev": "next dev --webpack",
     "build": "next build",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
@@ -23,6 +26,9 @@
     "react-dom": "19.2.4",
     "zod": "^4.3.6"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -30,6 +36,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

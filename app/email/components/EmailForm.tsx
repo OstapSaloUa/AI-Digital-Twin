@@ -27,8 +27,7 @@ export function EmailForm({
             Where should we send your results?
           </h1>
           <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
-            We&apos;ll use your email to save your AI twin setup and continue the
-            experience.
+            We&apos;ll use your email to save your AI twin setup and continue the experience.
           </p>
         </div>
         <div className="flex items-center gap-2 rounded-full bg-[var(--bg-subtle)] px-3 py-1 text-xs font-medium text-[var(--text-secondary)] border border-[var(--border-default)]">
@@ -38,9 +37,7 @@ export function EmailForm({
       </div>
 
       <div className="mt-8">
-        <label className="text-sm font-medium text-[var(--text-primary)]">
-          Email
-        </label>
+        <label className="text-sm font-medium text-[var(--text-primary)]">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}

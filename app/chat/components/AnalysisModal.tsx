@@ -7,11 +7,7 @@ type AnalysisModalProps = {
   onClose: () => void;
 };
 
-export function AnalysisModal({
-  analysis,
-  onContinue,
-  onClose,
-}: AnalysisModalProps) {
+export function AnalysisModal({ analysis, onContinue, onClose }: AnalysisModalProps) {
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/40 py-4 px-3 sm:py-8 sm:px-4"

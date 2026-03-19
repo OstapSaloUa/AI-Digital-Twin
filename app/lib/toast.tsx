@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
 import { AlertCircle } from "lucide-react";
 
 type Toast = { id: number; message: string; type: "error" };
@@ -47,6 +41,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Returns toast context with showError. Use inside ToastProvider.
+ * @returns { showError } - Call showError(message) to display an error toast
+ */
 export function useToast() {
   const ctx = useContext(ToastContext);
   if (!ctx) {

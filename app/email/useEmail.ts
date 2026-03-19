@@ -8,6 +8,10 @@ import { postEmail } from "../lib/api";
 import { useToast } from "../lib/toast";
 import { getErrorMessage } from "../lib/errors";
 
+/**
+ * Manages email form state and submission. Redirects to /customizing on success.
+ * @returns email, setEmail, valid, submitting, error, onSubmit
+ */
 export function useEmail() {
   const router = useRouter();
   const { showError } = useToast();
@@ -15,7 +19,12 @@ export function useEmail() {
 
   const valid = useMemo(() => isEmail(email.trim()), [email]);
 
-  const { mutateAsync: submitEmail, isPending, error, reset } = useMutation({
+  const {
+    mutateAsync: submitEmail,
+    isPending,
+    error,
+    reset,
+  } = useMutation({
     mutationFn: () => postEmail(email.trim()),
     onSuccess: () => router.push("/customizing"),
   });

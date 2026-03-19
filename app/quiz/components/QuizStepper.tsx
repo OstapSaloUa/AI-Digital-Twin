@@ -6,11 +6,7 @@ type QuizStepperProps = {
   onStepClick: (index: number) => void;
 };
 
-export function QuizStepper({
-  steps,
-  currentStep,
-  onStepClick,
-}: QuizStepperProps) {
+export function QuizStepper({ steps, currentStep, onStepClick }: QuizStepperProps) {
   return (
     <>
       <div className="mt-6 sm:mt-8 flex items-center gap-2">
