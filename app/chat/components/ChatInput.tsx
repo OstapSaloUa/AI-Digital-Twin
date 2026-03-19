@@ -9,7 +9,10 @@ type ChatInputProps = {
 
 export function ChatInput({ input, setInput, sending, onSend }: ChatInputProps) {
   return (
-    <div className="border-t border-[var(--border-default)] p-3 sm:p-4">
+    <div
+      className="shrink-0 border-t border-[var(--border-default)] p-3 sm:p-4"
+      style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+    >
       <div className="flex gap-2">
         <input
           value={input}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -20,6 +20,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: { default: "AI Digital Twin", template: "%s | AI Digital Twin" },
   description: "AI Digital Twin — personalized wellness companion",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

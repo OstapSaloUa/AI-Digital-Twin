@@ -24,8 +24,8 @@ export default function ChatPage() {
   } = useChat();
 
   return (
-    <div className="flex-1 bg-[var(--bg-base)]">
-      <div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="flex flex-1 flex-col min-h-0 bg-[var(--bg-base)]">
+      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col min-h-0 px-4 py-4 sm:px-6 sm:py-8">
         <FunnelStepIndicator currentStep="chat" />
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
           <div>
@@ -45,7 +45,7 @@ export default function ChatPage() {
           </button>
         </div>
 
-        <div className="mt-4 sm:mt-6 rounded-xl sm:rounded-2xl border border-[var(--border-default)] bg-[var(--bg-elevated)] shadow-sm overflow-hidden">
+        <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-[var(--border-default)] bg-[var(--bg-elevated)] shadow-sm sm:mt-6 sm:rounded-2xl">
           <MessageList messages={messages} listRef={listRef} />
           <ChatInput input={input} setInput={setInput} sending={sending} onSend={send} />
         </div>
