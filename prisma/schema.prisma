@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String         @id @default(cuid())
+  name      String
+  email     String?        @unique
+  createdAt DateTime       @default(now())
+
+  quizResponses QuizResponse[]
+  chatMessages  ChatMessage[]
+  events        Event[]
+}
+
+model QuizResponse {
+  id              String   @id @default(cuid())
+  userId          String
+  personality     String
+  therapyStyle    String
+  primaryGoal     String
+  stressFrequency String
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  sessionId String
+  userId    String?
+  type      String
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([sessionId, createdAt])
+  @@index([type, createdAt])
+  @@index([userId, createdAt])
+}
